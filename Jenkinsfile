@@ -1,24 +1,35 @@
-pipeline {
+pipeline{
     agent any
-
-    stages {
-        stage('BuildTest') {
-            steps {
-            git 'https://github.com/shivamrnc/Hello.git'
-                echo 'Building..'
+    	environment {
+		notifyEmail ="ravish.bagasi@nagarro.com"
+	}
+    tools{
+        maven 'maven_home'
+    }
+    triggers {
+    	cron('0 06 * * *')
+  	}
+    stages{
+        stage("code checkout"){
+            steps{
+            bat "echo hello"
+            }
+        }   
+        stage("code build"){
+            steps{
+            bat "mvn clean"
             }
         }
-        stage('Test') {
-            steps {
-            bat 'mvn compile'
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-            bat 'mvn test -Dbrowser=localchrome'
-                echo 'Deploying....'
+        stage("unit test"){
+            steps{
+            bat "mvn test"
             }
         }
     }
+    post{
+        success{
+            bat "echo success"
+            }
+        }
 }
+has context menu
