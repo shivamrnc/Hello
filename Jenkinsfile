@@ -1,35 +1,26 @@
-pipeline{
+pipeline {
     agent any
-    	environment {
-		notifyEmail ="ravish.bagasi@nagarro.com"
-	}
-    tools{
-        maven 'MAVEN_HOME'
-    }
-    triggers {
-    	cron('0 06 * * *')
-  	}
-    stages{
-        stage("code checkout"){
-            steps{
-            bat "echo hello"
-            }
-        }   
-        stage("code build"){
-            steps{
-            bat "mvn clean"
+
+    stages {
+        stage('BuildTest') {
+            steps {
+            git 'https://github.com/shivamrnc/Hello.git'
+                echo 'Building..'
             }
         }
-        stage("unit test"){
-            steps{
-            bat "mvn test"
+        stage('Test') {
+            steps {
+            bat 'mvn compile'
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+            bat 'mvn test -Dbrowser=localchrome'
+                echo 'Deploying....'
             }
         }
     }
-    post{
-        success{
-            bat "echo success"
-            }
-        }
-}
-has context menu
+
+  
+
