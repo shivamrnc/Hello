@@ -44,7 +44,7 @@ public class loginPage {
 
 	public void enterPassword(String password) {
 
-		driver.findElement(txt_password).sendKeys("Abc@123456");
+		driver.findElement(txt_password).sendKeys("Abc@12345");
 	}
 	public void clicklogin() {
 		driver.findElement(btn_login).click();
@@ -76,7 +76,7 @@ public class loginPage {
 		driver.findElement(txt_username).sendKeys("chaubeys123456@gmail.com");
 		driver.findElement(btn_continue).click();
 		
-		driver.findElement(txt_password).sendKeys("Abc@123456");
+		driver.findElement(txt_password).sendKeys("Abc@12345");
 		driver.findElement(btn_login).click();
 		
 		driver.findElement(txt_product ).sendKeys("iphone");
