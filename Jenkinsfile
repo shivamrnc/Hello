@@ -1,10 +1,11 @@
 pipeline {
     agent any
+    tools{
+        maven 'MAVEN_HOME'
 
     stages {
         stage('BuildTest') {
             steps {
-            git 'https://github.com/shivamrnc/Hello.git'
                 echo 'Building..'
             }
         }
