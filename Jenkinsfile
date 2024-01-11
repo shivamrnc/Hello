@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-            bat 'mvn test -Dbrowser = localchrome'
+            bat 'mvn test -Dbrowser=localchrome'
                 echo 'Deploying....'
             }
         }
