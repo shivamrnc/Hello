@@ -23,6 +23,15 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+        stage('clean'){
+            steps{
+                     
+        always {
+            cleanWs()
+        }
+       
+            }
+        }
         
     }
 }
